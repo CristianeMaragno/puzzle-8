@@ -42,19 +42,19 @@ def menu(tabuleiro):
             if escolha in algoritmos:
                 algoritmo, heuristica = algoritmos[escolha]
                 if heuristica:
-                    algoritmo(tabuleiro, heuristica, estado_final)
+                    resultado = algoritmo(tabuleiro, heuristica, estado_final)
                 else:
                     resultado = algoritmo(tabuleiro, estado_final)
-                    if resultado is not None:
-                        total_visitados, tamanho_caminho, tempo_total, maior_abertos, arquivo_saida = resultado
-                        print("Total de nós visitados:", total_visitados)
-                        print("Tamanho do caminho:", tamanho_caminho)
-                        print("Tempo total:", tempo_total)
-                        print("Maior quantidade de abertos:", maior_abertos)
-                        print("Arquivo de saída:", arquivo_saida)
-                    else:
-                        print("Nenhuma solução encontrada.")
 
+                if resultado is not None:
+                    total_visitados, tamanho_caminho, tempo_total, maior_abertos, arquivo_saida = resultado
+                    print("Total de nós visitados:", total_visitados)
+                    print("Tamanho do caminho:", tamanho_caminho)
+                    print("Tempo total:", tempo_total)
+                    print("Maior quantidade de abertos:", maior_abertos)
+                    print("Arquivo de saída:", arquivo_saida)
+                else:
+                    print("Nenhuma solução encontrada.")
                 
                 break
             else:
