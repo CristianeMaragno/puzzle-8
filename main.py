@@ -45,16 +45,12 @@ def menu(tabuleiro):
                     resultado = algoritmo(tabuleiro, heuristica, estado_final)
                 else:
                     resultado = algoritmo(tabuleiro, estado_final)
+                    if resultado is not None:
+                        return resultado
+                    else:
+                        print("Nenhuma solução encontrada.")
+                        return None
 
-                if resultado is not None:
-                    total_visitados, tamanho_caminho, tempo_total, maior_abertos, arquivo_saida = resultado
-                    print("Total de nós visitados:", total_visitados)
-                    print("Tamanho do caminho:", tamanho_caminho)
-                    print("Tempo total:", tempo_total)
-                    print("Maior quantidade de abertos:", maior_abertos)
-                    print("Arquivo de saída:", arquivo_saida)
-                else:
-                    print("Nenhuma solução encontrada.")
                 
                 break
             else:
@@ -63,14 +59,22 @@ def menu(tabuleiro):
             print("Entrada inválida. Por favor, digite um número.")
 
 def main():
-    caminho = "tabuleiro.txt"
+    caminho = "tabuleiro2.txt"
     tabuleiro = estado_inicial(caminho)
 
     if tabuleiro:
-        menu(tabuleiro)
+        resultado = menu(tabuleiro)
     else:
         print("Tabuleiro inicial não pôde ser carregado.")
 
+    if resultado:
+        total_visitados, tamanho_caminho, tempo_total, maior_abertos, arquivo_saida, caminho = resultado
+        print(f"\nO caminho percorrido foi:\n{caminho}\n")
+        print("a) Total de nós visitados:", total_visitados)
+        print("b) Tamanho do caminho:", tamanho_caminho)
+        print(f"c) Tempo total: {tempo_total:.4f} segundos")
+        print("d) Maior quantidade de abertos:", maior_abertos)
+        print("e) Arquivo de saída:", arquivo_saida)
 
 if __name__ == "__main__":
     main()
