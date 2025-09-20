@@ -43,6 +43,11 @@ def menu(tabuleiro):
                 algoritmo, heuristica = algoritmos[escolha]
                 if heuristica:
                     resultado = algoritmo(tabuleiro, heuristica, estado_final)
+                    if resultado is not None:
+                        return resultado
+                    else:
+                        print("Nenhuma solução encontrada.")
+                        return None
                 else:
                     resultado = algoritmo(tabuleiro, estado_final)
                     if resultado is not None:
@@ -50,7 +55,6 @@ def menu(tabuleiro):
                     else:
                         print("Nenhuma solução encontrada.")
                         return None
-
                 
                 break
             else:
