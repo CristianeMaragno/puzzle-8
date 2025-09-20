@@ -6,7 +6,7 @@ from node import Node
 
 total_visitados = 0 
 maior_abertos = 0
-arquivo_saida = "resultado.txt"
+arquivo_saida = "resultado-Custo-Uniforme.txt"
 
 def custo_uniforme(tabuleiro, estado_final):
     print("\nCusto Uniforme selecionado")
@@ -41,10 +41,24 @@ def custo_uniforme(tabuleiro, estado_final):
             novo_caminho = no_atual.caminho + [movimento]
             vizinho = Node(estado, pai=no_atual, custo=no_atual.custo+1, caminho=novo_caminho)
 
-            if vizinho not in visitados and vizinho not in abertos:
+
+            if vizinho in visitados:
+                continue
+
+            no_igual = None
+            for no in abertos:
+                if no.estado == vizinho.estado:
+                    no_igual = no
+                    break
+            if no_igual:
+                if vizinho.custo < no_igual.custo:
+                    abertos.remove(no_igual)
+                    abertos.append(vizinho)
+            else: 
                 abertos.append(vizinho)
-                if len(abertos) > maior_abertos:
-                    maior_abertos = len(abertos)
+
+            if len(abertos) > maior_abertos:
+                maior_abertos = len(abertos)
 
     print("\nNenhuma solução encontrada.")
     return None
@@ -83,6 +97,7 @@ def encontrar_vazio(estado):
 
 def criar_arquivo_saida(visitados, abertos):
     with open(arquivo_saida, "w") as f:
+        f.write("################################### CUSTO UNIFORME ###################################\n\n")
         f.write("################################## ESTADOS VISITADOS ##################################\n\n")
         for no in visitados:
             for linha in no.estado:

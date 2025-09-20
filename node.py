@@ -7,7 +7,7 @@ class Node:
         self.custo = custo
         self.heuristica = heuristica
         self.f = custo + heuristica
-        self.caminho = list(caminho)
+        self.caminho = list(caminho) # impede que o caminho original seja modificado
 
     def __lt__(self, other):
         return (self.custo + self.heuristica) < (other.custo + other.heuristica)
