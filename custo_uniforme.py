@@ -54,7 +54,7 @@ def custo_uniforme(tabuleiro, estado_final):
                 if vizinho.custo < no_igual.custo:
                     abertos.remove(no_igual)
                     abertos.append(vizinho)
-            else: 
+            else:
                 abertos.append(vizinho)
 
             if len(abertos) > maior_abertos:
@@ -72,18 +72,18 @@ def gerar_vizinhos(estado):
     }
     vazio = encontrar_vazio(estado)
     vizinhos = []
-    
+
     if vazio:
         for direcao, (dx, dy) in movimentos.items():
             novo_x, novo_y = vazio[0] + dx, vazio[1] + dy
-            
+
             if 0 <= novo_x < len(estado) and 0 <= novo_y < len(estado[0]):
 
                 novo_estado = [list(linha) for linha in estado]
-                
+
                 novo_estado[vazio[0]][vazio[1]], novo_estado[novo_x][novo_y] = \
                     novo_estado[novo_x][novo_y], novo_estado[vazio[0]][vazio[1]]
-                
+
                 vizinhos.append((novo_estado, direcao))
 
     return vizinhos
