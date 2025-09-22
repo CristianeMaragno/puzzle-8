@@ -26,10 +26,10 @@ def estado_inicial(caminho):
 def menu(tabuleiro):
     
     algoritmos = {
-        1: (custo_uniforme, None),
-        2: (a_estrela, heuristica_nao_admissivel),
-        3: (a_estrela, heuristica_admissivel_simples),
-        4: (a_estrela, heuristica_admissivel_complexa)
+        1: (custo_uniforme, None, "Custo Uniforme"),
+        2: (a_estrela, heuristica_nao_admissivel, "Heurística Não Admissível"),
+        3: (a_estrela, heuristica_admissivel_simples, "Heurística Admissível Simples"),
+        4: (a_estrela, heuristica_admissivel_complexa, "Heurística Admissível Complexa")
     }
     while True:
         try:
@@ -40,16 +40,16 @@ def menu(tabuleiro):
                                 "4 - A* Heuristica Admissivel Complexa\n"))
             
             if escolha in algoritmos:
-                algoritmo, heuristica = algoritmos[escolha]
+                algoritmo, heuristica, texto = algoritmos[escolha]
                 if heuristica:
-                    resultado = algoritmo(tabuleiro, heuristica, estado_final)
+                    resultado = algoritmo(tabuleiro, heuristica, estado_final, texto)
                     if resultado is not None:
                         return resultado
                     else:
                         print("Nenhuma solução encontrada.")
                         return None
                 else:
-                    resultado = algoritmo(tabuleiro, estado_final)
+                    resultado = algoritmo(tabuleiro, estado_final, texto)
                     if resultado is not None:
                         return resultado
                     else:
@@ -63,7 +63,7 @@ def menu(tabuleiro):
             print("Entrada inválida. Por favor, digite um número.")
 
 def main():
-    caminho = "tabuleiro2.txt"
+    caminho = "tabuleiro3.txt"
     tabuleiro = estado_inicial(caminho)
 
     if tabuleiro:
