@@ -26,6 +26,6 @@ def gerar_vizinhos(estado):
 def encontrar_vazio(estado):
     for i, linha in enumerate(estado):
         for j, valor in enumerate(linha):
-            if valor == " " or valor == '' or valor == 0 or valor is None:
+            if valor == " " or valor == '' or valor == '0' or valor == 0 or valor is None:
                 return (i, j)
     return None

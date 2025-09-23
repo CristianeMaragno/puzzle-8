@@ -1,16 +1,16 @@
 
 
 class Node:
-    def __init__(self, estado, pai=None, custo=0, heuristica=0, caminho=[]):
+    def __init__(self, estado, pai=None, custo=0, valor_heuristica=0, caminho=[]):
         self.estado = estado
         self.pai = pai
         self.custo = custo
-        self.heuristica = heuristica
-        self.f = custo + heuristica
+        self.valor_heuristica = valor_heuristica
+        self.f = custo + valor_heuristica
         self.caminho = list(caminho) # impede que o caminho original seja modificado
 
     def __lt__(self, other):
-        return (self.custo + self.heuristica) < (other.custo + other.heuristica)
+        return self.f < other.f
 
     def __eq__(self, other):
         return self.estado == other.estado
