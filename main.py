@@ -63,7 +63,7 @@ def menu(tabuleiro):
             print("Entrada inválida. Por favor, digite um número.")
 
 def main():
-    caminho = "tabuleiro2.txt"
+    caminho = "tabuleiro.txt"
     tabuleiro = estado_inicial(caminho)
 
     if tabuleiro:
